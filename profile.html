@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Profile - Skyline</title>
+<link rel="stylesheet" href="profile.css">
+</head>
+<body>
+
+<div class="container">
+    <div class="bdy">
+        <h2 id="userName">Loading...</h2>
+        <p id="userEmail"></p>
+        <div class="balance" id="userBalance"><span>My Balance</span> <br> ₦0</div>
+        <button class="withdraw" onclick="window.location.href='withdraw.html'"><img src="img/Money-bag.png" alt="money">Withdraw</button>
+  </div>
+
+  <div class="quick">
+    <h4>Quick Actions</h4>
+    <div class="list">
+        <p>◉ Join Skyline Channel</p>
+        <p>◉ Skyline Messages</p>
+        <p>◉ Skyline page</p>
+        <p>◉ Leaderboard</p>
+        <p>◉ FAQ</p>
+    </div>
+    <div class="lix">
+        <div class="txtimg">
+            <img src="bell.png" alt="Bell">
+            <p>Get notified on the skyline app about any upcoming improvements.</p>
+        </div>
+
+        <div class="txtimg">
+            <img src="add.png" alt="Bell">
+            <p>Add task to grow your business, get more followers and many more.</p>
+        </div>
+    </div>
+  </div>
+  
+  <button class="logout" id="logoutBtn">Logout</button>
+</div>
+
+<div class="bottom-nav">
+  <a href="dashboard.html" >
+    <svg width="24" height="24" fill="currentColor"><path d="M3 12l9-9 9 9v9a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/></svg>
+    Home
+  </a>
+  <a href="videos.html">
+    <svg width="24" height="24" fill="currentColor"><path d="M10 8.64v6.72L15 12l-5-3.36z"/><path d="M21 3H3v18h18V3zM5 19V5h14v14H5z"/></svg>
+    Videos
+  </a>
+    <a href="create.html" > 
+  <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10
+             10-4.48 10-10S17.52 2 12 2zm1 11h4v-2h-4V7h-2v4H7v2h4v4h2v-4z"/>
+  </svg>
+  Create
+</a>
+  <a href="tasks.html" >
+    <svg width="24" height="24" fill="currentColor"><path d="M9 11H7v2h2v-2zm0-4H7v2h2V7zm4 4h8v2h-8v-2zm0-4h8v2h-8V7zm-4 8H7v2h2v-2zm4 0h8v2h-8v-2z"/></svg>
+    Tasks
+  </a>
+  <a href="profile.html"  class="active">
+    <svg width="24" height="24" fill="currentColor"><path d="M12 12c2.7 0 5-2.3 5-5s-2.3-5-5-5-5 2.3-5 5 2.3 5 5 5zm0 2c-3.3 0-10 1.7-10 5v3h20v-3c0-3.3-6.7-5-10-5z"/></svg>
+    Profile
+  </a>
+</div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getAuth, onAuthStateChanged, signOut, updateProfile } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+import { getFirestore, doc, getDoc, updateDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-storage.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDim9k5CHfNythq6ORypN_RfwyLNMuxVLs",
+  authDomain: "sign-2fd98.firebaseapp.com",
+  projectId: "sign-2fd98",
+  storageBucket: "sign-2fd98.appspot.com",
+  messagingSenderId: "548682903618",
+  appId: "1:548682903618:web:0f0ca286f902c7fbacfddb"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth();
+const db = getFirestore(app);
+const storage = getStorage(app);
+
+const userName = document.getElementById("userName");
+const userEmail = document.getElementById("userEmail");
+const userBalance = document.getElementById("userBalance");
+const profilePic = document.getElementById("profilePic");
+const fileInput = document.getElementById("fileInput");
+const logoutBtn = document.getElementById("logoutBtn");
+
+onAuthStateChanged(auth, async (user) => {
+  if (user) {
+    userName.textContent = user.displayName || "User";
+    userEmail.textContent = user.email;
+
+    // Load Firestore data
+    const userRef = doc(db, "users", user.uid);
+    const snap = await getDoc(userRef);
+    if (snap.exists()) {
+      const data = snap.data();
+      userBalance.textContent = "Balance: ₦" + (data.balance || 0);
+      if (data.profilePicture) {
+        profilePic.src = data.profilePicture;
+      }
+    }
+
+
+
+  } else {
+    alert("Please login.");
+    window.location.href = "login.html";
+  }
+});
+
+logoutBtn.onclick = () => {
+  signOut(auth).then(() => {
+    window.location.href = "login.html";
+  });
+};
+</script>
+
+</body>
+</html>

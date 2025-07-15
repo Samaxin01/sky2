@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Skyline</title>
+<!-- <link rel="stylesheet" href="dashboard.css"> -->
+<style>
+:root {
+  --primary: #08a88a;
+  --bg: #ffffff;
+  --text: #333;
+  --card: #ffffff;
+}
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--primary);
+  color: white;
+  padding: 10px 20px;
+}
+.logo {
+  height: 30px;
+  margin-right: 10px;
+}
+.logo-container {
+  display: flex;
+  align-items: center;
+}
+.logout {
+  background: white;
+  color: var(--primary);
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.container {
+  max-width: 500px;
+  margin: 20px auto;
+}
+.card {
+  background: var(--card);
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+.stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.stat {
+  flex: 1 1 45%;
+  background: var(--card);
+  padding: 10px;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  background: var(--card);
+  border-top: 1px solid #ddd;
+}
+.bottom-nav a {
+  flex: 1;
+  text-align: center;
+  padding: 10px;
+  text-decoration: none;
+  color: var(--text);
+  font-size: 12px;
+}
+.bottom-nav a.active {
+  color: var(--primary);
+}
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left:0;
+    width: 100%;
+    background: white;
+    display: flex;
+    border-top: 1px solid #ccc;
+  }
+  .bottom-nav a {
+    flex: 1;
+    text-align: center;
+    padding: 10px;
+    text-decoration: none;
+    color: #333;
+    font-size: 12px;
+  }
+  .bottom-nav a.active {
+    color: #08a88a;
+  }
+  .bottom-nav svg {
+    display: block;
+    margin: 0 auto 5px;
+  }
+  @media (max-width: 500px){
+    
+  }
+</style>
+</head>
+<body>
+
+<header class="top-bar">
+  <div class="logo-container">
+    <img src="logo.gif" alt="Logo" class="logo">
+    <span class="site-name">Skyline</span>
+  </div>
+  <button class="logout" id="logoutBtn">Logout</button>
+</header>
+
+<div class="container">
+  <div class="card">
+    <strong>Hi,</strong> <span id="email"></span><br>
+    <strong>Joined:</strong> <span id="created"></span>
+  </div>
+
+  <div class="stats">
+    <div class="stat"><h3 id="balance">₦0</h3><small>Earnings</small></div>
+    <div class="stat"><h3 id="clicks">0</h3><small>Clicks</small></div>
+    <div class="stat"><h3 id="referrals">0</h3><small>Referrals</small></div>
+    <div class="stat"><h3 id="videos">0</h3><small>Videos Watched</small></div>
+    <div class="stat"><h3 id="tasks">0</h3><small>Tasks Completed</small></div>
+  </div>
+
+  <div class="card">
+    <h4>My Referral Link</h4>
+    <div class="referral" id="refLink"></div>
+    <button id="copyBtn">Copy</button>
+  </div>
+</div>
+
+<div class="bottom-nav">
+  <a href="dashboard.html"   class="active">
+    <svg width="24" height="24" fill="currentColor"><path d="M3 12l9-9 9 9v9a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/></svg>
+    Home
+  </a>
+  <a href="videos.html">
+    <svg width="24" height="24" fill="currentColor"><path d="M10 8.64v6.72L15 12l-5-3.36z"/><path d="M21 3H3v18h18V3zM5 19V5h14v14H5z"/></svg>
+    Videos
+  </a>
+    <a href="create.html" > 
+  <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10
+             10-4.48 10-10S17.52 2 12 2zm1 11h4v-2h-4V7h-2v4H7v2h4v4h2v-4z"/>
+  </svg>
+  Create
+</a>
+  <a href="tasks.html" >
+    <svg width="24" height="24" fill="currentColor"><path d="M9 11H7v2h2v-2zm0-4H7v2h2V7zm4 4h8v2h-8v-2zm0-4h8v2h-8V7zm-4 8H7v2h2v-2zm4 0h8v2h-8v-2z"/></svg>
+    Tasks
+  </a>
+  <a href="profile.html">
+    <svg width="24" height="24" fill="currentColor"><path d="M12 12c2.7 0 5-2.3 5-5s-2.3-5-5-5-5 2.3-5 5 2.3 5 5 5zm0 2c-3.3 0-10 1.7-10 5v3h20v-3c0-3.3-6.7-5-10-5z"/></svg>
+    Profile
+  </a>
+</div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDim9k5CHfNythq6ORypN_RfwyLNMuxVLs",
+  authDomain: "sign-2fd98.firebaseapp.com",
+  projectId: "sign-2fd98",
+  storageBucket: "sign-2fd98.appspot.com",
+  messagingSenderId: "548682903618",
+  appId: "1:548682903618:web:0f0ca286f902c7fbacfddb"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth();
+const db = getFirestore(app);
+
+onAuthStateChanged(auth, async (user) => {
+  if (user) {
+    const uid = user.uid;
+    const docRef = doc(db, "users", uid);
+    const docSnap = await getDoc(docRef);
+
+    if (docSnap.exists()) {
+      const data = docSnap.data();
+      document.getElementById("email").textContent = user.email;
+      document.getElementById("balance").textContent = "₦" + (data.balance || 0).toLocaleString();
+      document.getElementById("clicks").textContent = data.clicks || 0;
+      document.getElementById("referrals").textContent = data.referrals || 0;
+      document.getElementById("videos").textContent = data.videos || 0;
+      document.getElementById("tasks").textContent = data.tasks || 0;
+      document.getElementById("created").textContent = data.createdAt
+        ? data.createdAt.toDate().toDateString()
+        : "N/A";
+      document.getElementById("refLink").textContent = `https://your-skyline-website.com/signup.html?ref=${data.referralCode || "N/A"}`;
+    } else {
+      alert("No user data found.");
+    }
+  } else {
+    window.location.href = "login.html";
+  }
+});
+
+// Logout
+document.getElementById("logoutBtn").onclick = () => {
+  signOut(auth).then(() => {
+    window.location.href = "login.html";
+  });
+};
+
+// Copy referral link
+document.getElementById("copyBtn").addEventListener("click", () => {
+  const link = document.getElementById("refLink").textContent;
+  navigator.clipboard.writeText(link);
+  alert("Referral link copied!");
+});
+</script>
+</body>
+</html>

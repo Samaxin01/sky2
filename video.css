@@ -1,0 +1,51 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    transition: background 0.3s, color 0.3s;
+    text-align: center;
+    margin: 0;
+    margin: 15em auto;
+  }
+  .apology h5{
+    background: #08a88a;
+    color: white;
+    padding: 0.5em;
+    width: 30%;
+    display: grid;
+    justify-self: center;
+    border-radius: 0.6em;
+    margin-top: 0.2em;
+    cursor: pointer;
+  }
+  .apology h2,p,h5{
+    margin: 0.4em;
+  }
+  .apology p{
+    color: grey;
+  }
+  .bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left:0;
+    width: 100%;
+    background: white;
+    display: flex;
+    border-top: 1px solid #ccc;
+  }
+  .bottom-nav a {
+    flex: 1;
+    text-align: center;
+    padding: 10px;
+    text-decoration: none;
+    color: #333;
+    font-size: 12px;
+  }
+  .bottom-nav a.active {
+    color: #08a88a;
+  }
+  .bottom-nav svg {
+    display: block;
+    margin: 0 auto 5px;
+  }

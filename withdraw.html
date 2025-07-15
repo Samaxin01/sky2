@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Withdraw - Skyline</title>
+<style>
+  :root {
+    --primary: #08a88a;
+    --light: #f4f4f4;
+  }
+  body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: white;
+    color: #333;
+  }
+  .container {
+    max-width: 500px;
+    margin: 30px auto;
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    
+  }
+  h2 {
+    text-align: center;
+    color: var(--primary);
+  }
+  label {
+    font-weight: bold;
+    margin-top: 15px;
+    display: block;
+  }
+  input, select, button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 8px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+  }
+  button {
+    background: var(--primary);
+    color: white;
+    font-weight: bold;
+    border: none;
+    margin-top: 20px;
+    cursor: pointer;
+  }
+  .status {
+    margin-top: 15px;
+    text-align: center;
+    font-weight: bold;
+  }
+  .toggle {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+  }
+  .toggle button {
+    flex: 1;
+    background: #eee;
+    color: #333;
+  }
+  .toggle button.active {
+    background: var(--primary);
+    color: white;
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <img src="img/left.png" alt="Back">
+  <h2>Withdraw Funds</h2>
+
+  <div class="toggle">
+    <button id="bankBtn" class="active">Bank Transfer</button>
+    <button id="airtimeBtn">Airtime</button>
+  </div>
+
+  <form id="withdrawForm" action="https://formsubmit.co/jeesammy31@gmail.com" method="POST">
+    <input type="hidden" name="_subject" value="New Withdrawal Request from Skyline">
+    <input type="hidden" name="uid" id="userUid" />
+    <input type="hidden" name="email" id="userEmail" />
+    <input type="hidden" name="currentBalance" id="userBalance" />
+    
+    <div id="bankFields">
+      <label for="amount">Amount</label>
+      <select name="amount" id="amount" required>
+        <option value="">Select amount</option>
+        <option value="1500">₦1,500</option>
+        <option value="2500">₦2,500</option>
+        <option value="4500">₦4,500</option>
+        <option value="7500">₦7,500</option>
+      </select>
+
+      <label for="bank">Bank</label>
+      <select name="bank" id="bank" required>
+        <option value="">Select Bank</option>
+        <option>Access Bank</option>
+        <option>Zenith Bank</option>
+        <option>UBA</option>
+        <option>GTBank</option>
+        <option>First Bank</option>
+        <option>Polaris Bank</option>
+        <option>Wema Bank</option>
+        <option>Opay</option>
+        <option>Palmpay</option>
+        <option>Moniepoint</option>
+      </select>
+
+      <label for="accountName">Account Name</label>
+      <input type="text" name="accountName" id="accountName" required />
+
+      <label for="accountNumber">Account Number</label>
+      <input type="text" name="accountNumber" id="accountNumber" required pattern="\d{10}" maxlength="10" />
+    </div>
+
+    <div id="airtimeFields" style="display:none;">
+      <label for="airtimeAmount">Amount</label>
+      <select name="airtimeAmount" id="airtimeAmount">
+        <option value="">Select amount</option>
+        <option value="1500">₦1,500 Airtime</option>
+        <option value="2500">₦2,500 Airtime</option>
+        <option value="3500">₦3,500 Airtime</option>
+        <option value="4500">₦4,500 Airtime</option>
+        <option value="5500">₦5,500 Airtime</option>
+        <option value="6500">₦6,500 Airtime</option>
+      </select>
+
+      <label for="network">Network</label>
+      <select name="network" id="network">
+        <option value="">Select Network</option>
+        <option>MTN</option>
+        <option>GLO</option>
+        <option>Airtel</option>
+        <option>9mobile</option>
+      </select>
+
+      <label for="phone">Phone Number</label>
+      <input type="text" name="phone" id="phone" maxlength="11" pattern="\d{11}" />
+    </div>
+
+    <button type="submit" id="submitBtn">Request Withdrawal</button>
+    <div class="status" id="statusMsg"></div>
+  </form>
+</div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+import { getFirestore, doc, getDoc, updateDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDim9k5CHfNythq6ORypN_RfwyLNMuxVLs",
+  authDomain: "sign-2fd98.firebaseapp.com",
+  projectId: "sign-2fd98",
+  storageBucket: "sign-2fd98.appspot.com",
+  messagingSenderId: "548682903618",
+  appId: "1:548682903618:web:0f0ca286f902c7fbacfddb"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth();
+const db = getFirestore(app);
+
+const form = document.getElementById("withdrawForm");
+const submitBtn = document.getElementById("submitBtn");
+const statusMsg = document.getElementById("statusMsg");
+
+const bankBtn = document.getElementById("bankBtn");
+const airtimeBtn = document.getElementById("airtimeBtn");
+const bankFields = document.getElementById("bankFields");
+const airtimeFields = document.getElementById("airtimeFields");
+
+bankBtn.onclick = () => {
+  bankFields.style.display = "block";
+  airtimeFields.style.display = "none";
+  bankBtn.classList.add("active");
+  airtimeBtn.classList.remove("active");
+};
+airtimeBtn.onclick = () => {
+  bankFields.style.display = "none";
+  airtimeFields.style.display = "block";
+  bankBtn.classList.remove("active");
+  airtimeBtn.classList.add("active");
+};
+
+let userRef = null;
+let userData = null;
+
+onAuthStateChanged(auth, async (user) => {
+  if (user) {
+    userRef = doc(db, "users", user.uid);
+    const snap = await getDoc(userRef);
+    if (!snap.exists()) {
+      statusMsg.textContent = "User data not found.";
+      form.style.display = "none";
+      return;
+    }
+    userData = snap.data();
+    document.getElementById("userUid").value = user.uid;
+    document.getElementById("userEmail").value = user.email;
+    document.getElementById("userBalance").value = userData.balance;
+  } else {
+    alert("Please login.");
+    window.location.href = "login.html";
+  }
+});
+
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  statusMsg.textContent = "";
+  submitBtn.disabled = true;
+  submitBtn.textContent = "Processing...";
+
+  let amount = 0;
+
+  if (bankFields.style.display !== "none") {
+    amount = parseInt(document.getElementById("amount").value);
+  } else {
+    amount = parseInt(document.getElementById("airtimeAmount").value);
+  }
+
+  if (userData.referrals < 2) {
+    statusMsg.textContent = "❌ You need at least 2 referrals to withdraw.";
+    statusMsg.style.color = "red";
+    submitBtn.disabled = false;
+    submitBtn.textContent = "Request Withdrawal";
+    return;
+  }
+
+  if (userData.balance < amount) {
+    statusMsg.textContent = "❌ Insufficient balance.";
+    statusMsg.style.color = "red";
+    submitBtn.disabled = false;
+    submitBtn.textContent = "Request Withdrawal";
+    return;
+  }
+
+  try {
+    await updateDoc(userRef, {
+      balance: userData.balance - amount
+    });
+
+    statusMsg.textContent = "✅ Withdrawal request sent!";
+    statusMsg.style.color = "green";
+    form.submit();
+  } catch (err) {
+    console.error(err);
+    statusMsg.textContent = "❌ Failed to process withdrawal.";
+    statusMsg.style.color = "red";
+    submitBtn.disabled = false;
+    submitBtn.textContent = "Request Withdrawal";
+  }
+});
+</script>
+</body>
+</html>

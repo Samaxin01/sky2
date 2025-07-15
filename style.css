@@ -1,0 +1,170 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: white;
+    color: black;
+    transition: background 0.3s, color 0.3s;
+    margin: 2%;
+  }
+  * {
+  
+  box-sizing: border-box;
+}
+
+/* Top Bar Styles */
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white; 
+  color: white;
+  padding: 10px 20px;
+  position: fixed;
+    width: 100%;
+    top: 0em;
+    z-index: 999;
+}
+
+/* Logo and Name */
+.logo-container {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  height: 30px;
+    width: 30px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+.site-name {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #08a88a;
+    text-align: center;
+}
+
+/* Login Button */
+.login-btn {
+  background-color: #000000;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    font-size: 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.login-btn:hover {
+  background-color: #e6e6e6;
+}
+
+/* Responsive */
+@media (max-width: 500px) {
+  .site-name {
+    font-size: 1rem;
+  }
+
+  .login-btn {
+    padding: 6px 12px;
+    font-size: 0.9rem;
+  }
+  .content h5{
+
+  }
+}
+  .header h2{
+    color: #08a88a;
+  }
+  .header img{
+    width: 4%;
+    transition: 2s;
+    margin: 1em 1em 1em 0.3em;
+  }
+  .header{
+    display: flex;
+    justify-content: space-around;
+    background: white;
+    width: 100%;
+    
+  }
+  .header h5{
+    background: black;
+    width: 7%;
+    color: white;
+    text-align: center;
+    position: relative;
+    padding: 1em;
+    border-radius: 1em;
+    cursor: pointer;
+  }
+  .content{
+    text-align: center;
+    margin-top: 6em;
+  }
+ .main h1{
+    color: #08a88a;
+ }
+ .content h5{
+    background: #08a88a;
+    color: white;
+    padding: 1em;
+    width: ;
+    display: grid;
+    justify-items: center;
+    justify-content: center;
+    justify-self: center;
+    border-radius: 1em;
+    cursor: pointer;
+ }
+ .first-img img{
+    height: 50vh;
+ }
+ .first-img h4{
+    text-align: center;
+    color: #303144;
+    font-size: 1.2em;
+ }
+ .complete-tasks img{
+    width: 15%;
+    border-radius: 2em;
+ }
+ .complete-tasks{
+    background: #93d2ac;
+    padding: 2em;
+    border-radius: 2em;
+    color: white;
+    margin-top: 1.5em;
+ }
+ a{
+    color: white;
+    text-decoration: none;
+ }
+ .fade-in {
+  opacity: 0;
+  animation: fadeIn 5s forwards;
+}
+
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+
+
+.typing {
+  border-right: .1em solid #fff;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 0;
+  animation: typing 4s steps(30, end) forwards;
+}
+
+@keyframes typing {
+  to { width: 100%; }
+}
+.lim-off h3{
+    opacity: 47%;
+    font-size: 0.9em;
+}

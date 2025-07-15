@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Create Task - Skyline</title>
+<style>
+  :root {
+    --primary: #08a88a;
+    --light: #f4f4f4;
+  }
+  body {
+    margin: 0;
+    font-family: sans-serif;
+    background: white;
+    color: #333;
+  }
+  .container {
+    max-width: 500px;
+    margin: 30px auto;
+    background: #fff;
+    padding: 25px;
+    border-radius: 12px;
+   
+  }
+  h2 {
+    text-align: center;
+    color: var(--primary);
+  }
+  label {
+    display: block;
+    margin-top: 15px;
+    font-weight: bold;
+  }
+  input, select, textarea, button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 8px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+  }
+  button {
+    background: var(--primary);
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    margin-top: 20px;
+    font-weight: bold;
+  }
+  .status {
+    margin-top: 15px;
+    text-align: center;
+    font-weight: bold;
+  }
+  .bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left:0;
+    width: 100%;
+    background: white;
+    display: flex;
+    border-top: 1px solid #ccc;
+  }
+  .bottom-nav a {
+    flex: 1;
+    text-align: center;
+    padding: 10px;
+    text-decoration: none;
+    color: #333;
+    font-size: 12px;
+  }
+  .bottom-nav a.active {
+    color: #08a88a;
+  }
+  .bottom-nav svg {
+    display: block;
+    margin: 0 auto 5px;
+  }
+  @media (max-width: 500px){
+    
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h2>Create New Task</h2>
+
+  <form id="createForm" action="https://formsubmit.co/jeesammy31@gmail.com" method="POST" enctype="multipart/form-data">
+    <input type="hidden" name="_subject" value="New Task Request from Skyline">
+    <input type="hidden" name="uid" id="userUid" />
+    <input type="hidden" name="email" id="userEmail" />
+    <input type="hidden" name="price" id="price" />
+    <input type="hidden" name="currentBalance" id="currentBalance" />
+
+    <label for="taskType">Select Task Type</label>
+    <select name="taskType" id="taskType" required>
+      <option value="">-- Select Task --</option>
+      <option value="Whatsapp Connecting Task">Whatsapp Connecting Task - ₦10,000</option>
+      <option value="Whatsapp Group Join Task">Whatsapp Group Join Task - ₦4,000</option>
+      <option value="Whatsapp Channel Join Task">Whatsapp Channel Join Task - ₦5,100</option>
+      <option value="Tiktok Follow Task">Tiktok Follow Task - ₦7,500</option>
+      <option value="Instagram Follow Task">Instagram Follow Task - ₦9,100</option>
+      <option value="Facebook Follow Task">Facebook Follow Task - ₦5,300</option>
+    </select>
+
+    <label for="description">Task Description</label>
+    <textarea name="description" id="description" rows="3" required></textarea>
+
+    <label for="taskLink">Task Link</label>
+    <input type="url" name="taskLink" id="taskLink" required />
+
+    <label>Upload Image 1</label>
+    <input type="file" name="image1" accept="image/*" required />
+
+    <label>Upload Image 2</label>
+    <input type="file" name="image2" accept="image/*" required />
+
+    <button type="submit" id="submitBtn">Submit Task</button>
+
+    <div class="status" id="statusMsg"></div>
+  </form>
+</div>
+
+<!-- Popup -->
+<div class="popup" id="popup">
+  <div class="popup-content">
+    <h2>Join Us Now!</h2>
+    <p>Click the join button to continue.</p>
+    <button class="join-btn" onclick="joinNow()">Join</button>
+    <button class="close-btn" onclick="closePopup()">Close</button>
+  </div>
+</div>
+
+
+<div class="bottom-nav">
+  <a href="dashboard.html">
+    <svg width="24" height="24" fill="currentColor"><path d="M3 12l9-9 9 9v9a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/></svg>
+    Home
+  </a>
+  <a href="videos.html">
+    <svg width="24" height="24" fill="currentColor"><path d="M10 8.64v6.72L15 12l-5-3.36z"/><path d="M21 3H3v18h18V3zM5 19V5h14v14H5z"/></svg>
+    Videos
+  </a>
+    <a href="create.html"  class="active"> 
+  <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10
+             10-4.48 10-10S17.52 2 12 2zm1 11h4v-2h-4V7h-2v4H7v2h4v4h2v-4z"/>
+  </svg>
+  Create
+</a>
+  <a href="tasks.html" >
+    <svg width="24" height="24" fill="currentColor"><path d="M9 11H7v2h2v-2zm0-4H7v2h2V7zm4 4h8v2h-8v-2zm0-4h8v2h-8V7zm-4 8H7v2h2v-2zm4 0h8v2h-8v-2z"/></svg>
+    Tasks
+  </a>
+  <a href="profile.html">
+    <svg width="24" height="24" fill="currentColor"><path d="M12 12c2.7 0 5-2.3 5-5s-2.3-5-5-5-5 2.3-5 5 2.3 5 5 5zm0 2c-3.3 0-10 1.7-10 5v3h20v-3c0-3.3-6.7-5-10-5z"/></svg>
+    Profile
+  </a>
+</div>
+
+<!-- Firebase SDK -->
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+import { getFirestore, doc, getDoc, updateDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDim9k5CHfNythq6ORypN_RfwyLNMuxVLs",
+  authDomain: "sign-2fd98.firebaseapp.com",
+  projectId: "sign-2fd98",
+  storageBucket: "sign-2fd98.appspot.com",
+  messagingSenderId: "548682903618",
+  appId: "1:548682903618:web:0f0ca286f902c7fbacfddb"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth();
+const db = getFirestore(app);
+
+const form = document.getElementById("createForm");
+const statusMsg = document.getElementById("statusMsg");
+const priceField = document.getElementById("price");
+const submitBtn = document.getElementById("submitBtn");
+
+let userRef = null;
+let userData = null;
+
+// Price Map
+const priceMap = {
+  "Whatsapp Connecting Task": 10000,
+  "Whatsapp Group Join Task": 4000,
+  "Whatsapp Channel Join Task": 5100,
+  "Tiktok Follow Task": 7500,
+  "Instagram Follow Task": 9100,
+  "Facebook Follow Task": 5300
+};
+
+onAuthStateChanged(auth, async (user) => {
+  if (user) {
+    userRef = doc(db, "users", user.uid);
+    const snap = await getDoc(userRef);
+    if (!snap.exists()) {
+      statusMsg.textContent = "User data not found.";
+      form.style.display = "none";
+      return;
+    }
+    userData = snap.data();
+    document.getElementById("userUid").value = user.uid;
+    document.getElementById("userEmail").value = user.email;
+    document.getElementById("currentBalance").value = userData.balance;
+  } else {
+    alert("Please login first.");
+    window.location.href = "login.html";
+  }
+});
+
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  statusMsg.textContent = "";
+  const taskType = document.getElementById("taskType").value;
+  const price = priceMap[taskType];
+  priceField.value = price;
+
+  if (!taskType) {
+    statusMsg.textContent = "Please select a task type.";
+    statusMsg.style.color = "red";
+    return;
+  }
+
+  if (userData.balance < price) {
+    statusMsg.textContent = "❌ Insufficient balance.";
+    statusMsg.style.color = "red";
+    return;
+  }
+
+  // Deduct balance
+  try {
+    await updateDoc(userRef, {
+      balance: userData.balance - price
+    });
+
+    statusMsg.textContent = "✅ Task submitted successfully!";
+    statusMsg.style.color = "green";
+    submitBtn.disabled = true;
+    form.submit(); // Submit to formsubmit.co
+  } catch (err) {
+    console.error(err);
+    statusMsg.textContent = "❌ Failed to process task.";
+    statusMsg.style.color = "red";
+  }
+});
+</script>
+
+</body>
+</html>

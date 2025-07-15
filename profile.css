@@ -1,0 +1,158 @@
+:root {
+    --primary: #08a88a;
+    --light: #f4f4f4;
+    --text: #333;
+  }
+  body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: var(--light);
+    color: var(--text);
+  }
+  .container {
+    max-width: 500px;
+    margin: px auto;
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    text-align: center;
+    justify-content: center;
+    display: grid;
+    justify-content: center;
+    justify-self: center;
+  }
+  .profile-pic {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--primary);
+    margin-bottom: 15px;
+  }
+  h2 {
+    margin: 10px 0 5px;
+    color: var(--primary);
+  }
+  p {
+    margin: 5px 0;
+    font-size: 16px;
+  }
+  .balance {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 15px 0;
+    color: var(--primary);
+  }
+  button {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+  .withdraw {
+    background: var(--primary);
+    color: white;
+  }
+  .logout {
+    background: #f44336;
+    color: white;
+  }
+  .change-pic {
+    background: #eee;
+    color: var(--text);
+    border: 1px solid #ccc;
+  }
+  .bdy{
+    text-align: start;
+  }
+  .balance span{
+    font-size: 0.7em;
+    color: grey;
+  }
+  .bdy button{
+    display: block;
+    width: 30%;
+    padding: 12px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    font-weight: bold;
+    position: relative;
+    left: 18em;
+    bottom: 4em;
+  }
+  .withdraw{
+    display: flex;
+  }
+  .withdraw img{
+    width: 13%;
+    margin-right: 0.5em;
+  }
+  .list{
+    justify-content: start;
+    display: grid;
+    text-align: start;
+  }
+  .txtimg{
+    background: #93d2ac;
+    padding: 2em;
+    border-radius: 2em;
+    color: white;
+    margin-top: 1.5em;
+  }
+  @media (max-width: 500px){
+    .bdy button {
+    display: block;
+    width: 30%;
+    padding: 12px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    font-weight: bold;
+    position: relative;
+    left: 14em;
+    bottom: 4em;
+}
+  }
+
+  .bdy{
+    background: #bad6da;
+    padding: 1em;
+    border-radius: 0.6em;
+  }
+  .bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left:0;
+    width: 100%;
+    background: white;
+    display: flex;
+    border-top: 1px solid #ccc;
+  }
+  .bottom-nav a {
+    flex: 1;
+    text-align: center;
+    padding: 10px;
+    text-decoration: none;
+    color: #333;
+    font-size: 12px;
+  }
+  .bottom-nav a.active {
+    color: #08a88a;
+  }
+  .bottom-nav svg {
+    display: block;
+    margin: 0 auto 5px;
+  }
+  @media (max-width: 500px){
+    
+  }

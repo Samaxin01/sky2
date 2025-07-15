@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Skyline - Sign Up</title>
+  <style>
+    body {
+      margin:0;
+      font-family:sans-serif;
+      background:;
+      color:white;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      height:100vh;
+    }
+    .form-container {
+      background:white;
+      color:#333;
+      padding:20px;
+      border-radius:8px;
+      width:90%;
+      max-width:400px;
+      
+    }
+    h2 {
+      text-align:center;
+      color:#08a88a;
+    }
+    input,button {
+      width: 90%;
+    padding: 12px;
+    margin-top: 10px;
+    font-size: 16px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    }
+    button {
+      background:#08a88a;
+      color:white;
+      font-weight:bold;
+      cursor:pointer;
+      border:none;
+      display: grid;
+    justify-self: center;
+    }
+    .status {
+      margin-top:15px;
+      text-align:center;
+      font-weight:bold;
+    }
+    .acc{
+      color: black;
+    text-align: center;
+    font-size: 0.8em;
+    }
+  </style>
+</head>
+<body>
+
+<div class="form-container">
+  <h2>Sign Up</h2>
+  <input type="text" id="FullName" placeholder="Full Name">
+  <input type="email" id="email" placeholder="Email" />
+  <input type="password" id="password" placeholder="Password" />
+  <input type="password" id="confirmPassword" placeholder="Confirm Password" />
+  <button id="signupBtn">Sign Up</button>
+  <div class="status" id="status"></div>
+  <div class="acc">
+    <h4>Already have an account? <a href="login.html">Login</a></h4>
+  </div>
+</div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+import { getFirestore, doc, setDoc, getDocs, updateDoc, collection, query, where, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDim9k5CHfNythq6ORypN_RfwyLNMuxVLs",
+  authDomain: "sign-2fd98.firebaseapp.com",
+  projectId: "sign-2fd98",
+  storageBucket: "sign-2fd98.appspot.com",
+  messagingSenderId: "548682903618",
+  appId: "1:548682903618:web:0f0ca286f902c7fbacfddb"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth();
+const db = getFirestore(app);
+
+document.getElementById("signupBtn").addEventListener("click", async () => {
+  const email = document.getElementById("email").value.trim();
+  const password = document.getElementById("password").value;
+  const confirmPassword = document.getElementById("confirmPassword").value;
+  const status = document.getElementById("status");
+
+  if (!email || !password || !confirmPassword) {
+    status.textContent = "Please fill all fields.";
+    status.style.color = "red";
+    return;
+  }
+
+  if (password !== confirmPassword) {
+    status.textContent = "Passwords do not match.";
+    status.style.color = "red";
+    return;
+  }
+
+  status.textContent = "Processing...";
+  status.style.color = "#08a88a";
+
+  try {
+    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+    const user = userCredential.user;
+
+    // Get referral code from URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const referralCodeFromUrl = urlParams.get("ref");
+
+    let referredBy = null;
+
+    // Look up the referrer in Firestore
+    if (referralCodeFromUrl) {
+      const q = query(collection(db, "users"), where("referralCode", "==", referralCodeFromUrl));
+      const querySnapshot = await getDocs(q);
+
+      if (!querySnapshot.empty) {
+        const referrerDoc = querySnapshot.docs[0];
+        const referrerRef = referrerDoc.ref;
+        referredBy = referrerDoc.id;
+
+        const referrerData = referrerDoc.data();
+        const updatedBalance = (referrerData.balance || 0) + 500;
+        const updatedReferrals = (referrerData.referrals || 0) + 1;
+
+        // Update referrer
+        await updateDoc(referrerRef, {
+          balance: updatedBalance,
+          referrals: updatedReferrals
+        });
+      }
+    }
+
+    const referralCode = user.uid.slice(0, 8);
+
+    // Save new user
+    await setDoc(doc(db, "users", user.uid), {
+      email: email,
+      balance: 0,
+      referrals: 0,
+      tasks: 0,
+      videos: 0,
+      clicks: 0,
+      createdAt: serverTimestamp(),
+      referralCode: referralCode,
+      referredBy: referredBy || null
+    });
+
+    status.textContent = "Signup successful! Redirecting...";
+    status.style.color = "green";
+    setTimeout(() => {
+      window.location.href = "dashboard.html";
+    }, 1500);
+  } catch (error) {
+    console.error(error);
+    status.textContent = error.message.replace("Firebase:", "").trim();
+    status.style.color = "red";
+  }
+});
+</script>
+
+</body>
+</html>
