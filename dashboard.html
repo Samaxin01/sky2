@@ -207,7 +207,7 @@ onAuthStateChanged(auth, async (user) => {
       document.getElementById("created").textContent = data.createdAt
         ? data.createdAt.toDate().toDateString()
         : "N/A";
-      document.getElementById("refLink").textContent = `https://your-skyline-website.com/signup.html?ref=${data.referralCode || "N/A"}`;
+      document.getElementById("refLink").textContent = `https://samaxin01.github.io/sky2/signup.html?ref=${data.referralCode || "N/A"}`;
     } else {
       alert("No user data found.");
     }
