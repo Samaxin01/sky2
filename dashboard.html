@@ -3,127 +3,30 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Skyline</title>
-<!-- <link rel="stylesheet" href="dashboard.css"> -->
-<style>
-:root {
-  --primary: #08a88a;
-  --bg: #ffffff;
-  --text: #333;
-  --card: #ffffff;
-}
-body {
-  margin: 0;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: var(--bg);
-  color: var(--text);
-}
-.top-bar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: var(--primary);
-  color: white;
-  padding: 10px 20px;
-}
-.logo {
-  height: 30px;
-  margin-right: 10px;
-}
-.logo-container {
-  display: flex;
-  align-items: center;
-}
-.logout {
-  background: white;
-  color: var(--primary);
-  border: none;
-  padding: 8px 12px;
-  border-radius: 4px;
-  cursor: pointer;
-}
-.container {
-  max-width: 500px;
-  margin: 20px auto;
-}
-.card {
-  background: var(--card);
-  padding: 15px;
-  border-radius: 8px;
-  margin-bottom: 15px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-}
-.stats {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-.stat {
-  flex: 1 1 45%;
-  background: var(--card);
-  padding: 10px;
-  border-radius: 8px;
-  text-align: center;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
-}
-.bottom-nav {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  display: flex;
-  background: var(--card);
-  border-top: 1px solid #ddd;
-}
-.bottom-nav a {
-  flex: 1;
-  text-align: center;
-  padding: 10px;
-  text-decoration: none;
-  color: var(--text);
-  font-size: 12px;
-}
-.bottom-nav a.active {
-  color: var(--primary);
-}
-.bottom-nav {
-    position: fixed;
-    bottom: 0;
-    left:0;
-    width: 100%;
-    background: white;
-    display: flex;
-    border-top: 1px solid #ccc;
-  }
-  .bottom-nav a {
-    flex: 1;
-    text-align: center;
-    padding: 10px;
-    text-decoration: none;
-    color: #333;
-    font-size: 12px;
-  }
-  .bottom-nav a.active {
-    color: #08a88a;
-  }
-  .bottom-nav svg {
-    display: block;
-    margin: 0 auto 5px;
-  }
-  @media (max-width: 500px){
-    
-  }
-</style>
+<title>Hustlepay - Dashboard</title>
+<link rel="stylesheet" href="dashboard.css">
 </head>
 <body>
 
+  
 <header class="top-bar">
   <div class="logo-container">
     <img src="logo.gif" alt="Logo" class="logo">
-    <span class="site-name">Skyline</span>
+    <span class="site-name">HustlePay</span>
   </div>
   <button class="logout" id="logoutBtn">Logout</button>
 </header>
+
+<!-- Popup -->
+<div class="popup" id="popup">
+  <div class="popup-content">
+    <h2>Welcome home!</h2>
+    <p>Hi user😉, <br> Welcome to HustlePay, in HustlePay you earn by completing simple tasks, watching short videos and also subscribing. you can also create your own task which would be verified before it shows in the task page. Earn when people click your link. Share your referral code to be eligable to withdraw. The minimum withdraw is ₦1500. Isn't it amazing? You can also withdraw in airtime. <br> <i>You are adviced to Join the Skyline Whatsapp Channel for successful withdraw.</i> Thanks for using Skyline.</p>
+    <button class="join-btn" onclick="joinNow()">Join</button>
+    <button class="close-btn" onclick="closePopup()">Close</button>
+  </div>
+</div>
+
 
 <div class="container">
   <div class="card">
@@ -146,7 +49,24 @@ body {
   </div>
 </div>
 
-<div class="bottom-nav">
+<div class="cont">
+  <div class="first-cont">
+  <img src="comming-soon-referral.png" alt="referrals">
+  <p>Having referrals makes it easy and fast for you to withdraw your earnings.</p>
+  </div>
+  <!-- 2 -->
+   <div class="first-cont2">
+  <img src="comming-soon-task.png" alt="referrals">
+  <p>Perform our simple tasks to have more earnings. Some have higher rewards.</p>
+  </div>
+  <!-- 3 -->
+   <div class="first-cont">
+  <img src="comming-soon-video.png" alt="referrals">
+  <p>Watch our vidoes to add some cash to your balance. </p>
+  </div>
+</div>
+
+<div class="bottom-nav"> 
   <a href="dashboard.html"   class="active">
     <svg width="24" height="24" fill="currentColor"><path d="M3 12l9-9 9 9v9a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/></svg>
     Home
@@ -171,6 +91,8 @@ body {
     Profile
   </a>
 </div>
+
+<script src="dash.js"></script>
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
@@ -222,6 +144,60 @@ document.getElementById("logoutBtn").onclick = () => {
     window.location.href = "login.html";
   });
 };
+
+// Get references to DOM elements
+        const popupContainer = document.getElementById('popupContainer');
+        const closePopupButton = document.getElementById('closePopupButton');
+        const okButton = document.getElementById('okButton'); // Get the 'Got it!' button
+
+        /**
+         * Shows the pop-up message with a fade-in and slide-down animation.
+         */
+        function showPopup() {
+            // Add 'active' class to trigger fade-in and slide-down
+            popupContainer.classList.add('active');
+            // Remove 'hide' class if it was previously added
+            popupContainer.classList.remove('hide');
+        }
+
+        /**
+         * Hides the pop-up message with a fade-out and slide-up animation.
+         * The 'hide' class is added first to trigger the animation,
+         * then after a delay (matching CSS transition duration), the 'active'
+         * class is removed and visibility is set to hidden.
+         */
+        function hidePopup() {
+            // Add 'hide' class to trigger fade-out and slide-up animation
+            popupContainer.classList.add('hide');
+
+            // After the animation completes, remove 'active' and 'hide' classes
+            // to fully hide the element and reset its state.
+            // The delay should match the CSS transition duration (0.3s).
+            setTimeout(() => {
+                popupContainer.classList.remove('active');
+                popupContainer.classList.remove('hide');
+            }, 300); // 300ms matches the CSS transition duration
+        }
+
+        // Add event listener to the close button inside the pop-up
+        closePopupButton.addEventListener('click', hidePopup);
+
+        // Add event listener to the 'Got it!' button inside the pop-up
+        okButton.addEventListener('click', hidePopup);
+
+        // Optional: Close pop-up when clicking outside the content area
+        popupContainer.addEventListener('click', (event) => {
+            // If the click target is the container itself (not a child of popup-content)
+            if (event.target === popupContainer) {
+                hidePopup();
+            }
+        });
+
+        // Automatically show the pop-up after 3 seconds when the page loads
+        window.onload = function() {
+            setTimeout(showPopup, 3000); // 3000 milliseconds = 3 seconds
+        };
+
 
 // Copy referral link
 document.getElementById("copyBtn").addEventListener("click", () => {

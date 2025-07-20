@@ -3,68 +3,23 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Skyline - Sign Up</title>
-  <style>
-    body {
-      margin:0;
-      font-family:sans-serif;
-      background:;
-      color:white;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      height:100vh;
-    }
-    .form-container {
-      background:white;
-      color:#333;
-      padding:20px;
-      border-radius:8px;
-      width:90%;
-      max-width:400px;
-      
-    }
-    h2 {
-      text-align:center;
-      color:#08a88a;
-    }
-    input,button {
-      width: 90%;
-    padding: 12px;
-    margin-top: 10px;
-    font-size: 16px;
-    border-radius: 4px;
-    border: 1px solid #ccc;
-    }
-    button {
-      background:#08a88a;
-      color:white;
-      font-weight:bold;
-      cursor:pointer;
-      border:none;
-      display: grid;
-    justify-self: center;
-    }
-    .status {
-      margin-top:15px;
-      text-align:center;
-      font-weight:bold;
-    }
-    .acc{
-      color: black;
-    text-align: center;
-    font-size: 0.8em;
-    }
-  </style>
+  <title>HustlePay - Sign Up</title>
+  <link rel="stylesheet" href="signup.css">
 </head>
 <body>
+  
 
 <div class="form-container">
-  <h2>Sign Up</h2>
-  <input type="text" id="FullName" placeholder="Full Name">
+  <img src="smile.gif" alt="Smile">
+  <h2>Welcome to HustlePay</h2>
+  <input type="text" id="FullName" placeholder="Full Name" required>
   <input type="email" id="email" placeholder="Email" />
   <input type="password" id="password" placeholder="Password" />
   <input type="password" id="confirmPassword" placeholder="Confirm Password" />
+  <div class="accept">
+    <input type="checkbox" name="accept" id="" required>
+    <h5>I accept HustlePay<a href=""> terms and conditions </a></h5>
+  </div>
   <button id="signupBtn">Sign Up</button>
   <div class="status" id="status"></div>
   <div class="acc">

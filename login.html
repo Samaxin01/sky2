@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Skyline - Login</title>
+<title>HustlePay - Login</title>
 <style>
   body {
       margin:0;
@@ -62,13 +62,29 @@
     text-align: center;
     font-size: 0.8em;
     }
+    .accept input,h5{
+        margin: 0;
+    }
+    .accept{
+        display: flex;
+    margin: 1em;
+    text-align: center;
+    justify-content: center;
+    }
+    .accept input{
+        width: 2em;
+    }
 </style>
 </head>
 <body>
 <div class="container">
-  <h2>Login</h2>
+  <h2>Welcome, Sign in</h2>
   <input id="email" type="email" placeholder="Email" required>
   <input id="password" type="password" placeholder="Password" required>
+   <div class="accept">
+    <input type="checkbox" name="accept" id="" required>
+    <h5 style="color: grey;">remember password</h5>
+  </div>
   <button id="loginBtn">Login</button>
   <div id="status"></div>
   <div class="acc">

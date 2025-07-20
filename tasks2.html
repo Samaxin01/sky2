@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Join & Claim</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f8f9fa;
+      margin: 0;
+      padding: 20px;
+    }
+    h2 {
+      text-align: center;
+      color: #ff6600;
+    }
+    .reward {
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 15px;
+      padding: 20px;
+      margin: 20px auto;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      max-width: 400px;
+    }
+    .reward h3 {
+      color: #333;
+    }
+    button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 10px;
+      font-weight: bold;
+      margin: 5px;
+      cursor: pointer;
+    }
+    .join-btn {
+      background-color: #28a745;
+      color: white;
+    }
+    .claim-btn {
+      background-color: #ff6600;
+      color: white;
+    }
+    button:disabled {
+      background-color: #ccc;
+      cursor: not-allowed;
+    }
+     .s-h{
+      display: flex;
+    justify-self: center;
+    }
+    a{
+      color:white;
+      text-decoration: none;
+    }
+    .bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left:0;
+    width: 100%;
+    background: white;
+    display: flex;
+    border-top: 1px solid #ccc;
+  }
+  .bottom-nav a {
+    flex: 1;
+    text-align: center;
+    padding: 10px;
+    text-decoration: none;
+    color: #333;
+    font-size: 12px;
+  }
+  .bottom-nav a.active {
+    color: #08a88a;
+  }
+  .bottom-nav svg {
+    display: block;
+    margin: 0 auto 5px;
+  }
+  </style>
+</head>
+<body>
+  <div class="s-h">
+    <h5 style="margin-right: 5em;
+    background: grey;
+    color: white;
+    padding: 1em;
+    border-radius: 0.5em;
+    cursor: pointer;
+    text-decoration: none;"><a href="tasks.html">Quick Tasks</a></h5>
+    <h5 style="
+    background: #08a88a;
+    color: white;
+    padding: 1em;
+    border-radius: 0.5em;
+    text-decoration: none;"><a href="tasks2.html">Simple Tasks</a></h5>
+  </div>
+
+  <div class="reward" data-id="reward1">
+    <h3>Task 1: Join Telegram</h3>
+    <button class="join-btn" onclick="joinNow(this, 'https://t.me/exampleGroup')">Join Now</button>
+    <button class="claim-btn" disabled onclick="claimReward(this, 'reward1')">Claim ₦40</button>
+  </div>
+
+  <div class="reward" data-id="reward2">
+    <h3>Task 2: Follow Instagram</h3>
+    <button class="join-btn" onclick="joinNow(this, 'https://instagram.com/examplePage')">Join Now</button>
+    <button class="claim-btn" disabled onclick="claimReward(this, 'reward2')">Claim ₦40</button>
+  </div>
+
+  <div class="reward" data-id="reward3">
+    <h3>Task 3: Like Facebook Page</h3>
+    <button class="join-btn" onclick="joinNow(this, 'https://facebook.com/examplePage')">Join Now</button>
+    <button class="claim-btn" disabled onclick="claimReward(this, 'reward3')">Claim ₦40</button>
+  </div>
+
+  <div class="reward" data-id="reward4">
+    <h3>Task 4: Subscribe on YouTube</h3>
+    <button class="join-btn" onclick="joinNow(this, 'https://youtube.com/@exampleChannel')">Join Now</button>
+    <button class="claim-btn" disabled onclick="claimReward(this, 'reward4')">Claim ₦40</button>
+  </div>
+
+  <div class="bottom-nav">
+  <a href="dashboard.html" >
+    <svg width="24" height="24" fill="currentColor"><path d="M3 12l9-9 9 9v9a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/></svg>
+    Home
+  </a>
+  <a href="videos.html">
+    <svg width="24" height="24" fill="currentColor"><path d="M10 8.64v6.72L15 12l-5-3.36z"/><path d="M21 3H3v18h18V3zM5 19V5h14v14H5z"/></svg>
+    Videos
+  </a>
+    <a href="create.html" > 
+  <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10
+             10-4.48 10-10S17.52 2 12 2zm1 11h4v-2h-4V7h-2v4H7v2h4v4h2v-4z"/>
+  </svg>
+  Create
+</a>
+  <a href="tasks.html"   class="active">
+    <svg width="24" height="24" fill="currentColor"><path d="M9 11H7v2h2v-2zm0-4H7v2h2V7zm4 4h8v2h-8v-2zm0-4h8v2h-8V7zm-4 8H7v2h2v-2zm4 0h8v2h-8v-2z"/></svg>
+    Tasks
+  </a>
+  <a href="profile.html">
+    <svg width="24" height="24" fill="currentColor"><path d="M12 12c2.7 0 5-2.3 5-5s-2.3-5-5-5-5 2.3-5 5 2.3 5 5 5zm0 2c-3.3 0-10 1.7-10 5v3h20v-3c0-3.3-6.7-5-10-5z"/></svg>
+    Profile
+  </a>
+</div>
+
+  <script type="module">
+    // Firebase Config
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+    import { getFirestore, doc, getDoc, updateDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+    import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyDim9k5CHfNythq6ORypN_RfwyLNMuxVLs",
+      authDomain: "sign-2fd98.firebaseapp.com",
+      projectId: "sign-2fd98",
+      storageBucket: "sign-2fd98.appspot.com",
+      messagingSenderId: "548682903618",
+      appId: "1:548682903618:web:0f0ca286f902c7fbacfddb"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+    const auth = getAuth(app);
+    let currentUser;
+
+    onAuthStateChanged(auth, async (user) => {
+      if (user) {
+        currentUser = user;
+        const uid = user.uid;
+        const docRef = doc(db, "users", uid);
+        const docSnap = await getDoc(docRef);
+
+        if (!docSnap.exists()) {
+          await setDoc(docRef, {
+            balance: 0,
+            tasks: {}
+          });
+        } else {
+          const data = docSnap.data().tasks || {};
+          document.querySelectorAll('.reward').forEach(reward => {
+            const id = reward.dataset.id;
+            const claimBtn = reward.querySelector('.claim-btn');
+            if (data[id]) claimBtn.disabled = true;
+          });
+        }
+      } else {
+        alert("You must be logged in to claim rewards.");
+        window.location.href = "login.html";
+      }
+    });
+
+    // Open external link and enable claim
+    window.joinNow = (btn, url) => {
+      window.open(url, "_blank");
+      const claimBtn = btn.parentElement.querySelector('.claim-btn');
+      claimBtn.disabled = false;
+    };
+
+    // Claim reward
+    window.claimReward = async (btn, rewardId) => {
+      if (!currentUser) return alert("Login first");
+      const uid = currentUser.uid;
+      const userRef = doc(db, "users", uid);
+      const userSnap = await getDoc(userRef);
+
+      let data = userSnap.data();
+      if (data.tasks && data.tasks[rewardId]) {
+        alert("Already claimed.");
+        return;
+      }
+
+      const newBalance = (data.balance || 0) + 40;
+      await updateDoc(userRef, {
+        balance: newBalance,
+        [`tasks.${rewardId}`]: true
+      });
+
+      alert("₦40 claimed successfully!");
+      btn.disabled = true;
+    };
+  </script>
+</body>
+</html>
