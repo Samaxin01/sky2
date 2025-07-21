@@ -21,7 +21,7 @@
 <div class="popup" id="popup">
   <div class="popup-content">
     <h2>Welcome home!</h2>
-    <p>Hi user😉, <br> Welcome to HustlePay, in HustlePay you earn by completing simple tasks, watching short videos and also subscribing. you can also create your own task which would be verified before it shows in the task page. Earn when people click your link. Share your referral code to be eligable to withdraw. The minimum withdraw is ₦1500. Isn't it amazing? You can also withdraw in airtime. <br> <i>You are adviced to Join the Skyline Whatsapp Channel for successful withdraw.</i> Thanks for using Skyline.</p>
+    <p>Hi user😉, <br> Welcome to HustlePay, in HustlePay you earn by completing simple tasks, watching short videos and also subscribing. you can also create your own task which would be verified before it shows in the task page. Earn when people click your link. Share your referral code to be eligable to withdraw. The minimum withdraw is ₦1500. Isn't it amazing? You can also withdraw in airtime. <br> <i>You are adviced to Join the Skyline Whatsapp Channel for successful withdraw.</i> Thanks for using HustlePay.</p>
     <button class="join-btn" onclick="joinNow()">Join</button>
     <button class="close-btn" onclick="closePopup()">Close</button>
   </div>
@@ -129,7 +129,7 @@ onAuthStateChanged(auth, async (user) => {
       document.getElementById("created").textContent = data.createdAt
         ? data.createdAt.toDate().toDateString()
         : "N/A";
-      document.getElementById("refLink").textContent = `https://samaxin01.github.io/sky2/signup.html?ref=${data.referralCode || "N/A"}`;
+      document.getElementById("refLink").textContent = `https://samaxin01.github.io/sky2/index.html?ref=${data.referralCode || "N/A"}`;
     } else {
       alert("No user data found.");
     }

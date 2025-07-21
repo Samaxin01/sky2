@@ -36,7 +36,7 @@
       cursor: pointer;
     }
     .join-btn {
-      background-color: #28a745;
+      background-color: #08a88a;
       color: white;
     }
     .claim-btn {
@@ -99,19 +99,19 @@
   </div>
 
   <div class="reward" data-id="reward1">
-    <h3>Task 1: Join Telegram</h3>
+    <h3>Task 1: Join Our Telegram Channel</h3>
     <button class="join-btn" onclick="joinNow(this, 'https://t.me/exampleGroup')">Join Now</button>
     <button class="claim-btn" disabled onclick="claimReward(this, 'reward1')">Claim ₦40</button>
   </div>
 
   <div class="reward" data-id="reward2">
-    <h3>Task 2: Follow Instagram</h3>
+    <h3>Task 2: Follow Us on Facebook</h3>
     <button class="join-btn" onclick="joinNow(this, 'https://instagram.com/examplePage')">Join Now</button>
     <button class="claim-btn" disabled onclick="claimReward(this, 'reward2')">Claim ₦40</button>
   </div>
 
   <div class="reward" data-id="reward3">
-    <h3>Task 3: Like Facebook Page</h3>
+    <h3>Task 3: Like our Facebook Post</h3>
     <button class="join-btn" onclick="joinNow(this, 'https://facebook.com/examplePage')">Join Now</button>
     <button class="claim-btn" disabled onclick="claimReward(this, 'reward3')">Claim ₦40</button>
   </div>
@@ -214,13 +214,13 @@
         return;
       }
 
-      const newBalance = (data.balance || 0) + 40;
+      const newBalance = (data.balance || 0) + 30;
       await updateDoc(userRef, {
         balance: newBalance,
         [`tasks.${rewardId}`]: true
       });
 
-      alert("₦40 claimed successfully!");
+      alert("₦30 claimed successfully!");
       btn.disabled = true;
     };
   </script>

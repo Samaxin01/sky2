@@ -49,3 +49,13 @@ body {
     display: block;
     margin: 0 auto 5px;
   }
+  .apology h3{
+    font-size: 3em;
+    color: grey;
+    opacity: 50%;
+    margin: 0;
+  }
+  a{
+    color: white;
+    text-decoration: none;
+  }

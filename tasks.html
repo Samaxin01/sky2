@@ -14,6 +14,7 @@ body {
   font-family: sans-serif;
   background: var(--light);
   color: #333;
+  margin-bottom: 8em;
 }
 .container {
   max-width: 500px;
@@ -72,12 +73,18 @@ body {
 .modal-content h4 {
   margin-top:0;
   color: var(--primary);
+  text-align: center;
 }
 .modal-content p, .modal-content label {
   margin: 10px 0;
+    text-align: center;
+    font-family: sans-serif;
+    color: #08a88a;
 }
 .modal-content input, .modal-content textarea, .modal-content button {
-  width: 100%;
+  border: 1.5px solid black;
+    border-radius: 0.5em;
+    width: 95%;
   padding:10px;
   margin-top:5px;
   font-size:15px;
@@ -157,8 +164,72 @@ body {
     justify-self: center;
     }
     a{
-      color:white;
+      color: black;
       text-decoration: none;
+    }
+    .more{
+      text-align: center;
+      color: grey;
+    }
+    /* Base styling for the pop-up container */
+        .popup {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+      display: none;
+    }
+
+    .popup-content {
+      background: white;
+      color: #333;
+      padding: 30px;
+      border-radius: 10px;
+      text-align: center;
+      max-width: 300px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.3);
+      animation: fadeIn 0.5s ease;
+    }
+
+    .popup-content h2 {
+      margin-top: 0;
+      color: #08a88a;
+    }
+
+    .popup-content button {
+      padding: 10px 20px;
+      margin: 10px 5px;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .join-btn {
+      background-color: #08a88a;
+      color: white;
+    }
+
+    .close-btn {
+      background-color: #ddd;
+      color: #333;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    .popup-content i{
+      color: red;
+    }
+    .space{
+      margin: 1.3em 0;
     }
 </style>
 </head>
@@ -183,22 +254,67 @@ body {
 <div class="container">
   <!-- Example Task 1 -->
   <div class="task">
-    <h3>Sign </h3>
+    <h3>Connect to Letshare for 48hrs</h3>
     <small>Reward: ₦300</small>
-    <small>Expires in: <span id="countdown2"></span></small>
-    <button class="howto-btn" onclick="showHowTo('Go to our Instagram profile and follow us. Take a screenshot showing you followed.')">HOW TO PERFORM THIS TASK</button>
-    <button class="perform-btn" onclick="showPerform('Follow us on Instagram','https://instagram.com/yourpage','task2')">PERFORM TASK</button>
+    <small>Expires in: <span id="countdown1"></span></small>
+    <button class="howto-btn" onclick="showHowTo('Signup using the link, connect your whatsapp for 48hrs, After connecting for 48hrs, send a screenshot of your connected account, also send a screenshot of your full home page')">HOW TO PERFORM THIS TASK</button>
+    <button class="perform-btn" onclick="showPerform('Connect to Letshare for 48hrs','https://letshare.me?inviteCode=MECGZVXE','task1')">PERFORM TASK</button>
+  </div>
+</div>
+
+<!-- Popup -->
+<div class="popup" id="popup">
+  <div class="popup-content">
+    <h2>Complete Tasks</h2>
+    <p>This is the task page where you can earn by performing simple tasks. When you submit a task, you will be directed to our formsubmit page where your Task proof will be sent. Make sure You verify the Formsubmit page to Submit your Task proof successfully. <br> <i>Note, Some  tasks may take up to 24hrs before you get rewarded. This is because some people do not perform the task, But they claim the rewards.</i> Thanks for using HustlePay.</p>
+    <button class="join-btn" onclick="joinNow()">Join</button>
+    <button class="close-btn" onclick="closePopup()">Close</button>
   </div>
 </div>
 
   <!-- Example Task 2 -->
   <div class="task">
-    <h3>Follow us on Instagram</h3>
-    <small>Reward: ₦300</small>
+    <h3>SignUp to Bittoken</h3>
+    <small>Reward: ₦20</small>
     <small>Expires in: <span id="countdown2"></span></small>
-    <button class="howto-btn" onclick="showHowTo('Go to our Instagram profile and follow us. Take a screenshot showing you followed.')">HOW TO PERFORM THIS TASK</button>
-    <button class="perform-btn" onclick="showPerform('Follow us on Instagram','https://instagram.com/yourpage','task2')">PERFORM TASK</button>
+    <button class="howto-btn" onclick="showHowTo('Click the link in the Perform button to got to Bittoken,Signup including this referral link ( 9826108357 ) NOTE: You must use the referral link to signup unless no reward. ....Screenshots Needed................. (1)SEND A SCREENSHOT OF YOU REGISTERING WITH THE REFERRAL CODE (9826108357)..(2) SEND A SCREENSHOT OF THE BITTOKEN DASHBOARD. {After submitting your task proof, You will be rewarded within 1hr}.')">HOW TO PERFORM THIS TASK</button>
+    <button class="perform-btn" onclick="showPerform('Signup to Bittoken','https://minebittoken.com?ref=9826108357','task2')">PERFORM TASK</button>
+    
   </div>
+</div>
+
+ <!-- Example Task 3 -->
+  <div class="task">
+    <h3>SignUp to FNN</h3>
+    <small>Reward: ₦30</small>
+    <small>Expires in: <span id="countdown2"></span></small>
+    <button class="howto-btn" onclick="showHowTo('Signup using the link and including this referral code (6HGYPHG), After signing up, buy NFT 1. send a screenshot of your signup page, also send a screenshot of your full home page')">HOW TO PERFORM THIS TASK</button>
+    <button class="perform-btn" onclick="showPerform('Signup to FNN','https://fnn01.vip/register?invite=6HGYPHG','task3')">PERFORM TASK</button>
+  </div>
+</div>
+
+<!-- Example Task 3 -->
+  <div class="task">
+    <h3>SignUp to Efsanetr (222U)</h3>
+    <small>Reward: ₦50</small>
+    <small>Expires in: <span id="countdown2"></span></small>
+    <button class="howto-btn" onclick="showHowTo('Signup using the link, After signing up, Click signin. send a screenshot of your signup page, also send a screenshot of your full home page')">HOW TO PERFORM THIS TASK</button>
+    <button class="perform-btn" onclick="showPerform('SignUp to Efsanetr (222U)','https://efsanetr.com/en_US/internal/register/?inviteCode=2S1NAW','task3')">PERFORM TASK</button>
+  </div>
+</div>
+
+<!-- Example Task 3 -->
+  <div class="task">
+    <h3>Connect to Whappshare</h3>
+    <small>Reward: ₦100</small>
+    <small>Expires in: <span id="countdown2"></span></small>
+    <button class="howto-btn" onclick="showHowTo('Signup using the link and including this referral code (vzyqVJ0KJ54), After signing up, Connect whatsapp for 48hrs. Note: Low-Banning. Send a screenshot of your signup page, also send a screenshot of your full home page')">HOW TO PERFORM THIS TASK</button>
+    <button class="perform-btn" onclick="showPerform('Connect to Whappshare','https://whappshare.com/?code=vzyqVJ0KJ54','task3')">PERFORM TASK</button>
+  </div>
+</div>
+
+<div class="more">
+  <h5>More tasks are coming soon..</h5>
 </div>
 
 <!-- How to Modal -->
@@ -215,18 +331,29 @@ body {
   <div class="modal-content">
     <span class="close" onclick="closeModal('performModal')">&times;</span>
     <h4 id="performTitle"></h4>
-    <p><a href="#" target="_blank" id="performLink">Visit Task Link</a></p>
+    <p><a href="#" target="_blank" id="performLink">❇️ Visit Task Link ❇️</a></p>
     <form id="proofForm" action="https://formsubmit.co/jeesammy31@gmail.com" method="POST" enctype="multipart/form-data">
       <input type="hidden" name="_subject" value="Task Submission">
-      <label>Your Gmail / Phone Number:</label>
-      <input type="text" name="user_contact" required placeholder="Your Gmail or Phone Number">
-      <label>Your Skyline Gmail:</label>
-      <input type="text" name="skyline_gmail" value="skyline@example.com" readonly>
+
+      <div class="space">
+      <label>Your Email / Phone Number:</label>
+      <input type="text" name="user_contact" required placeholder="Your Gmail or Phone Number used to register">
+      </div>
+
+      <div class="space">
+      <label>Your HustlePay Email:</label>
+      <input type="text" name="skyline_gmail" placeholder="Enter your HustlePay email address..." required>
+      </div>
+
+      <div class="space">
       <label>Description:</label>
-      <textarea name="description" required></textarea>
-      <label>Upload Screenshot Proof:</label>
+      <textarea name="description" placeholder="Tell us about the app you visited...(Optional)"></textarea>
+      </div>
+      
+      
+      <label>Upload 1st Screenshot Proof:</label>
       <input type="file" name="image1" accept="image/*" required>
-      <label>Upload Additional Proof:</label>
+      <label>Upload 2nd Additional Proof:</label>
       <input type="file" name="image2" accept="image/*" required>
       <button type="submit">Submit Task</button>
     </form>
@@ -279,10 +406,10 @@ function startCountdown(id, minutes, key) {
     const now = new Date().getTime();
     const distance = endTime - now;
     if (distance < 0) {
-      el.textContent = "Expired";
+      el.textContent = "NAN";
       return;
     }
-    const m = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const m = Math.floor((distance % (1000 * 60 * 60 * 60)) / (1000 * 60));
     const s = Math.floor((distance % (1000 * 60)) / 1000);
     el.textContent = `${m}m ${s}s`;
   }, 1000);
@@ -290,7 +417,7 @@ function startCountdown(id, minutes, key) {
 
 // Start countdowns
 startCountdown('countdown1', 120, 'task1_end');
-startCountdown('countdown2', 180, 'task2_end');
+startCountdown('countdown2', 190, 'task2_end');
 
 // Show How to
 function showHowTo(text){

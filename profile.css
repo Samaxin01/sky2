@@ -61,6 +61,11 @@
   .logout {
     background: #f44336;
     color: white;
+    margin-bottom: 6em;
+    width: 90%;
+    display: grid;
+    justify-content: center;
+    justify-self: center;
   }
   .change-pic {
     background: #eee;
@@ -155,4 +160,34 @@
   }
   @media (max-width: 500px){
     
+  }
+  .split1, .split2{
+    display: flex;
+  }
+  .ques img{
+    width: 30%;
+    justify-content: center;
+    display: grid;
+    text-align: center;
+    justify-self: center;
+  }
+  .quick{
+    margin-top: 2em;
+  }
+  .ques{
+    background: #93d2ac;
+    padding: 1.4em;
+    border-radius: 1em;
+    margin: 0 0.3em;
+    color: white;
+  }
+  .split2 {
+    margin-top: 1em;
+  }
+  .ques h5{
+    margin: 0;
+  }
+  a{
+    color: white;
+    text-decoration: none;
   }
