@@ -87,7 +87,7 @@ document.getElementById("signupBtn").addEventListener("click", async () => {
         referredBy = referrerDoc.id;
 
         const referrerData = referrerDoc.data();
-        const updatedBalance = (referrerData.balance || 0) + 500;
+        const updatedBalance = (referrerData.balance || 0) + 40;
         const updatedReferrals = (referrerData.referrals || 0) + 1;
 
         // Update referrer
