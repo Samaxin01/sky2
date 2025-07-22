@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Hustlepay - Dashboard</title>
+<title>Hustlepay-The Best Place To Make Easy Money</title>
 <link rel="stylesheet" href="dashboard.css">
 </head>
 <body>
@@ -131,7 +131,7 @@ onAuthStateChanged(auth, async (user) => {
       document.getElementById("created").textContent = data.createdAt
         ? data.createdAt.toDate().toDateString()
         : "N/A";
-      document.getElementById("refLink").textContent = `https://samaxin01.github.io/sky2/index.html?ref=${data.referralCode || "N/A"}`;
+      document.getElementById("refLink").textContent = `https://hustlepay.vercel.app/signup.html?ref=${data.referralCode || "N/A"}`;
     } else {
       alert("No user data found.");
     }
