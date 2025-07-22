@@ -19,6 +19,9 @@ body {
     margin-top: 0.2em;
     cursor: pointer;
   }
+  .apology h5:hover{
+    background-color: black;
+  }
   .apology h2,p,h5{
     margin: 0.4em;
   }
@@ -58,4 +61,12 @@ body {
   a{
     color: white;
     text-decoration: none;
+  }
+  .balance:hover{
+    background-color: black;
+    transition: 0.3s;
+  }
+  .bdy button:hover{
+ background-color: black;
+    transition: 0.3s;
   }

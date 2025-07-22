@@ -207,3 +207,7 @@ body {
       background: brown;
       transition: 0.9s;
     }
+   a{
+    color: white;
+    text-decoration: none;
+   }

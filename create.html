@@ -137,6 +137,12 @@
     .popup-content i{
       color: red;
     }
+    button:hover{
+      background-color: black;
+      transition: 0.3s;
+      opacity: 90%;
+      animation-duration: 10s;
+    }
 </style>
 </head>
 <body>
@@ -162,7 +168,7 @@
       <option value="Facebook Follow Task">Facebook Follow Task - ₦5,300</option>
     </select>
     <label for="taskLink">Your Email<label>
-    <input type="url" name="Email" placeholder="Enter your HustlePay Email address" required />
+    <input type="email" name="Email" placeholder="Enter your HustlePay Email address" required />
 
     <label for="description">Task Description</label>
     <textarea name="description" id="description" rows="3" placeholder="Tell us about your task..." required></textarea>
