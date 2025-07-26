@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Loading...</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: #f5f5f5;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-family: Arial, sans-serif;
+    }
+
+    .loader {
+      border: 8px solid #e0e0e0;
+      border-top: 8px solid #008080;
+      border-radius: 50%;
+      width: 70px;
+      height: 70px;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .status {
+      margin-top: 20px;
+      font-size: 16px;
+      color: #333;
+    }
+
+    .error {
+      color: red;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="loader"></div>
+  <div class="status" id="status">Checking connection...</div>
+  <div class="error" id="errorMsg"></div>
+
+  <script>
+    const status = document.getElementById('status');
+    const errorMsg = document.getElementById('errorMsg');
+
+    function checkConnection() {
+      if (navigator.onLine) {
+        status.textContent = 'Connected. Redirecting...';
+        setTimeout(() => {
+          window.location.href = 'dashboard.html';
+        }, 2000);
+      } else {
+        status.textContent = 'No internet connection';
+        errorMsg.textContent = 'Please connect to the internet to continue.';
+        setTimeout(checkConnection, 3000); // retry every 3 secs
+      }
+    }
+
+    window.addEventListener('load', checkConnection);
+    window.addEventListener('online', checkConnection);
+    window.addEventListener('offline', checkConnection);
+  </script>
+</body>
+</html>

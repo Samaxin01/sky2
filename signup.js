@@ -94,3 +94,4 @@ document.getElementById("signupBtn").addEventListener("click", async () => {
     status.style.color = "red";
   }
 });
+
